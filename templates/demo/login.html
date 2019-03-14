@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>HTML5响应式用户登录界面模板</title>
+    <meta name="description" content="particles.js is a lightweight JavaScript library for creating particles.">
+    <meta name="author" content="Vincent Garreau" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" media="screen" href="/static/login/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/login/css/reset.css">
+    <script type="text/javascript" src="/static/login/js/login.js"></script>
+</head>
+
+<body>
+    <div id="particles-js">
+		<div class="login">
+            <div class="logo"></div>
+            <form action="/demo/login/" method="POST">
+                <div class="form-item">
+                    <p class="tip">{{ message }}</p>
+                </div>
+                <div class="form-item">
+                    <input class="username" type="text" autocomplete="off" name="username" placeholder="邮箱">
+                </div>
+                <div class="form-item">
+                    <input class="password" type="password" autocomplete="off" name="password" placeholder="登录密码">
+                </div>
+                <div class="form-item"><button id="submit">登 录</button></div>
+                <div class="reg-bar">
+                    <a class="reg" href="/demo/register">立即注册</a>
+                    <a class="forget" href="/demo/forget">忘记密码</a>
+                </div>
+            </form>
+        </div>
+		<div class="sk-rotating-plane"></div>
+
+        <div style="text-align:center;">
+        <p>MICROBLOG：<a href="https://weibo.com/" target="_blank">微博官方</a></p>
+        </div>
+    </div>
+
+    <!-- scripts -->
+    <script type="text/javascript" src="/static/login/js/particles.min.js"></script>
+    <script type="text/javascript" src="/static/login/js/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+<title>jQuery-Microblog</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/login/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/login/css/style1.css">
+    <link rel="stylesheet" type="text/css" href="/static/login/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/login/css/jquery.atwho.css">
+    <link rel="stylesheet" type="text/css" href="/static/login/comment-css/comment.css">
+    <link rel="stylesheet" type="text/css" href="/static/login/comment-css/style.css">
+</head>
+<body>
+{#<div id="particles-js">#}
+
+    <nav class="navbar  navbar-fixed-top" stlye="opacity:0.5" role="navigation" style="background: #e0620d ;padding-top: 3px;height:50px;">
+        <div class="container-fluid" style="background: #fff;">
+            <div class="navbar-header ">
+                <span class="navbar-brand " href="#">Microblog</span>
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-navbar-collapse">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+             <form class="navbar-form navbar-left" role="search">
+                 <div class="form-group">
+                    <input type="text" class="form-control" placeholder="" name="hottopic" id="hottopic">
+                    <i class="glyphicon glyphicon-search btn_search"  onclick="location.href='../searchblog/?hottopic='+document.getElementById('hottopic').value+''"></i>
+    {#			   <button type="submit" class="btn btn-default">提交</button>#}
+                 </div>
+
+            </form>
+
+            <div class="collapse navbar-collapse" id="my-navbar-collapse">
+
+                <ul class="nav navbar-nav navbar-right" >
+                <li ><a href="/demo/personal"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;{{ user.username }}</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        设置 <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/demo/login">登录</a></li>
+                        <li><a href="/demo/register">注册</a></li>
+                    </ul>
+                </li>
+                </ul>
+            </div>
+        </div>
+        <hr style="margin: 0;padding: 0;color:#222;width: 100%">
+    </nav>
+
+    <div class="container container_bg" >
+        <div class="row" stlye="opacity:0.5">
+            <!--侧边栏-->
+            <div class="col-sm-2 col-xs-12 left" >
+                    <div class="col-sm-12">
+                        <a href="/demo/personal" class="pull-left" style="padding: 10px;font-size:16px;font-weight: bold;">个人页面</a>
+                        <a href="/demo/hotblog" class="pull-left" style="padding: 10px;font-size:16px;font-weight: bold;">热门话题</a>
+                        <a href="#" class="pull-left" style="padding: 10px;font-size:16px;font-weight: bold;">热门搜索</a>
+                    </div>
+                    <hr style="margin: 0;padding: 0;width: 100%">
+                        <span herf="#" class="pull-left" style="padding: 10px;font-size:16px;font-weight: bold;">@提到我</span>
+                {% for i in wasAt %}
+                    <div class="col-sm-12 item_hot" >
+                        <a class="pull-left">{{ i.username }}</a>
+                    </div>
+                {% endfor %}
+                    <hr style="margin: 0;padding: 0;width: 100%">
+
+                    <div class="col-sm-12 text-center" style="padding: 10px"><a href="#">查看更多</a></div>
+
+                </div>
+            <!--侧边栏-->
+
+            <div class="col-sm-7 col-xs-12 my_edit" >
+
+               <!--发布内容-->
+                <div class="row item_msg" >
+                {% for art,username in userlist.items %}
+                    <div class="col-sm-12 col-xs-12 message clearfix" >
+                        <img src="/static/login/images/img/icon.png" class="col-sm-2 col-xs-2" style="border-radius: 50%">
+                        <div class="col-sm-10 col-xs-10 clearfix mess">
+                            <span style="font-weight: bold;">{{username}}</span>
+                            <div class="dropdown location">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    设置 <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="javascript:;" class="del">删除</a></li>
+                                    <li><a href="javascript:;" class="set">编辑</a></li>
+                                </ul>
+                            </div>
+                            <br>
+                            <small class="date" style="color:#999">{{ art.ctime }}</small>
+                            <div class="msg_content">
+                                <p class="blogcontent">{{ art.content }}</p>
+                                <p class="blogid" hidden>{{ art.id }}</p>
+                                <img class="mypic" src="/static/login/images/img/bg_1.jpg" >
+                            </div>
+                        </div>
+
+                        <!--评论-->
+                        <div class="commentAll col-sm-12 col-xs-12">
+                            <div class="comment-show">
+                                <div class="comment-show-con-list pull-left clearfix">
+                                    <div class="date-dz">
+                                        <span class="date-dz-left pull-left comment-time">2017-5-2 11:11:39</span>
+                                        <div class="date-dz-right pull-right comment-pl-block">
+                                            <a href="javascript:;" class="removeBlock">删除</a>
+                                            <a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">评论</a>
+                                            <span class="pull-left date-dz-line">|</span>
+                                            <a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞 (<i class="z-num">{{ art.likenum }}</i>)</a>
+                                        </div>
+                                    </div>
+                                    <div class="hf-list-con"></div>
+                                </div>
+                            </div>
+                            <!--回复区域 end-->
+                        </div>
+                        <!--评论-->
+
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+                <div class="col-sm-12 col-xs-12 more" >
+                    <a type="button" class="morebutt">加载更多...</a>
+                </div>
+            </div>
+            <!--发布内容-->
+
+            <!--个人页面-->
+            <div class="col-sm-3 col-xs-12 part_right" >
+                <div class="row text-center inform">
+                    <img src="/static/login/images/img/icon.png" >
+                    <h4 style="font-weight: bold;" class="user">{{ user.username }}</h4>
+                    <h4 style="font-weight: bold;" class="userid" hidden>{{ user.id }}</h4>
+                    <div class="col-sm-12 my_inform" >
+                        <div class="col-sm-4 col-xs-4">
+                            <div class="follow">{{ followNum }}</div>
+                            <div class="sort">关注</div>
+
+                        </div>
+                        <div class="col-sm-4 col-xs-4">
+                            <div>{{ funsNum }}</div>
+                            <div class="sort">粉丝</div>
+                        </div>
+                        <div class="col-sm-4 col-xs-4">
+                            <div>{{ articalNum }}</div>
+                            <div class="sort">博客</div>
+                        </div>
+                    </div>
+                </div>
+                <!--个人页面-->
+
+                <!--热门话题-->
+                <div class="row recommend" >
+                    <div class="col-sm-12">
+                        <span class="pull-left" style="padding: 10px;font-size:16px;font-weight: bold;">推荐好友</span>
+                        <a class="pull-right" style="padding: 10px;">换一批</a>
+                    </div>
+                    <hr style="margin: 0;padding: 0;width: 100%">
+                    {% for i in stranger %}
+                    <div class="col-sm-12 item_hot followlist" >
+                        <span class="pull-left followname">{{ i.username }}</span>
+                        <span class="pull-left followid" hidden>{{ i.id }}</span>
+                        <button class="pull-right item_num btn fouce">关注</button>
+                    </div>
+                    {% endfor %}
+                    <hr style="margin: 0;padding: 0;width: 100%">
+
+                    <div class="col-sm-12 text-center" style="padding: 10px"><a href="#">查看更多</a></div>
+
+                </div>
+                <!--热门话题-->
+
+                <!--热门话题-->
+                <div class="row part_hot" >
+                    <div class="col-sm-12">
+                        <span class="pull-left" style="padding: 10px;font-size:16px;font-weight: bold;">热门话题</span>
+                        <a class="pull-right" style="padding: 10px;">换话题</a>
+                    </div>
+                    <hr style="margin: 0;padding: 0;width: 100%">
+
+                    {% for i in topic %}
+                    <div class="col-sm-12 item_hot" >
+                        <a class="pull-left">#{{ i.content }}#</a>
+{#                        <span class="pull-right item_num">34.6亿</span>#}
+                    </div>
+                    {% endfor %}
+
+                    <hr style="margin: 0;padding: 0;width: 100%">
+
+                    <div class="col-sm-12 text-center" style="padding: 10px"><a href="#">查看更多</a></div>
+
+                </div>
+                <!--热门话题-->
+
+            </div>
+
+
+        </div>
+
+{#        <script src="https://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=3856931374" type="text/javascript" charset="utf-8"></script>#}
+        <!--微博组件-->
+{#        <wb:login-button type="3,2"></wb:login-button>#}
+{#        <wb:like ></wb:like>#}
+{#        <wb:bulkfollow uids="1458085847,1406758883,1052981072,1820868023,1696867305"></wb:bulkfollow>#}
+{#        <wb:share-button count="n" type="button" size="big" ></wb:share-button>#}
+{#        <wb:publish action="publish" type="web" language="zh_cn" button_type="red" button_size="middle" refer="y" default_image="" ></wb:publish>#}
+
+    </div>
+{#</div>#}
+{#<div class="sk-rotating-plane"></div>#}
+
+</body>
+</html>

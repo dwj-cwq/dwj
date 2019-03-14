@@ -1,0 +1,9 @@
+.partleft{
+    margin-top:10px;
+}
+.personalbg{
+    background: url("../images/personal-images/1.jpg");
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}

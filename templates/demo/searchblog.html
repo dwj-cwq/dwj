@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:wb="http://open.weibo.com/wb">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+<title>jQuery-Microblog</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/login/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/login/css/style1.css">
+    <link rel="stylesheet" type="text/css" href="/static/login/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/login/css/jquery.atwho.css">
+    <link rel="stylesheet" type="text/css" href="/static/login/comment-css/comment.css">
+    <link rel="stylesheet" type="text/css" href="/static/login/comment-css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/login/css/personal.css">
+
+</head>
+<body>
+
+<div id="particles-js">
+    <nav class="navbar  navbar-fixed-top" role="navigation" style="background: #e0620d ;padding-top: 3px;height:50px;">
+        <div class="container-fluid" style="background: #fff;">
+            <div class="navbar-header ">
+                <span class="navbar-brand " href="#">Microblog</span>
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-navbar-collapse">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+             <form class="navbar-form navbar-left" role="search">
+                 <div class="form-group">
+                    <input type="text" class="form-control" placeholder="" name="hottopic" id="hottopic">
+                    <i class="glyphicon glyphicon-search btn_search"  onclick="location.href='../searchblog/?hottopic='+document.getElementById('hottopic').value+''"></i>
+    {#			   <button type="submit" class="btn btn-default">提交</button>#}
+                 </div>
+
+            </form>
+
+            <div class="collapse navbar-collapse" id="my-navbar-collapse">
+
+                <ul class="nav navbar-nav navbar-right" >
+                <li ><a href="#"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;Jack.C</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        设置 <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">登录</a></li>
+                        <li><a href="#">注册</a></li>
+                    </ul>
+                </li>
+                </ul>
+            </div>
+        </div>
+        <hr style="margin: 0;padding: 0;color:#222;width: 100%">
+    </nav>
+
+    <div class="container container_bg" >
+        <div class="row">
+            {% if message %}
+                <div class="col-sm-8 col-xs-12 "  style="margin-left:200px;margin-top: 150px;margin-bottom: 200px">
+                <div class="row item_msg" >
+                    <div class="col-sm-12 col-xs-12 message clearfix" >
+                        <div class="col-sm-10 col-xs-10 clearfix">
+                            <div class="msg_content">{{ message }}</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {% else %}
+                <div class="col-sm-8 col-xs-12 "  style="margin-left:200px;margin-top: 150px;margin-bottom: 200px">
+                <div class="row item_msg" >
+                    <div class="col-sm-12 col-xs-12 message clearfix" >
+                        <img src="/static/login/images/img/icon.png" class="col-sm-2 col-xs-2" style="border-radius: 50%">
+                        <div class="col-sm-10 col-xs-10 clearfix">
+                            <span style="font-weight: bold;">{{ user.username }}</span>
+                            <div class="dropdown location">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    设置 <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="javascript:;" class="del">删除</a></li>
+                                    <li><a href="javascript:;" class="set">编辑</a></li>
+                                </ul>
+                            </div>
+                            <br>
+                            <small class="date" style="color:#999">1分钟前</small>
+                            <div class="msg_content">{{ artical.content }}<img class="mypic" src="/static/login/images/img/bg_1.jpg" ></div>
+                        </div>
+
+                        <!--评论-->
+                        <div class="commentAll col-sm-12 col-xs-12">
+                            <div class="comment-show">
+                                <div class="comment-show-con-list pull-left clearfix">
+                                    <div class="date-dz">
+                                        <span class="date-dz-left pull-left comment-time">2017-5-2 11:11:39</span>
+                                        <div class="date-dz-right pull-right comment-pl-block">
+                                            <a href="javascript:;" class="removeBlock">删除</a>
+                                            <a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a>
+                                            <span class="pull-left date-dz-line">|</span>
+                                            <a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞 (<i class="z-num">666</i>)</a>
+                                        </div>
+                                    </div>
+                                    <div class="hf-list-con"></div>
+                                </div>
+                            </div>
+                            <!--回复区域 end-->
+                        </div>
+                        <!--评论-->
+
+                    </div>
+
+                </div>
+            </div>
+            {% endif %}
+
+            </div>
+
+        </div>
+
+</div>
+<div class="sk-rotating-plane"></div>
+
+        <script src="https://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=3856931374" type="text/javascript" charset="utf-8"></script>
+        <!--微博组件-->
+{#        <wb:login-button type="3,2"></wb:login-button>#}
+{#        <wb:like ></wb:like>#}
+{#        <wb:bulkfollow uids="1458085847,1406758883,1052981072,1820868023,1696867305"></wb:bulkfollow>#}
+{#        <wb:share-button count="n" type="button" size="big" ></wb:share-button>#}
+{#        <wb:publish action="publish" type="web" language="zh_cn" button_type="red" button_size="middle" refer="y" default_image="" ></wb:publish>#}
+
+
+<script type="text/javascript" src="/static/login/js/jquery-3.1.0.js"></script>
+<script type="text/javascript" src="/static/login/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/login/js/publish/microblog.js"></script>
+<script type="text/javascript" src="/static/login/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/login/js/topic/jquery.caret.js"></script>
+<script type="text/javascript" src="/static/login/js/topic/jquery.atwho.js"></script>
+<script type="text/javascript" src="/static/login/js/comment/jquery.flexText.js"></script>
+<script type="text/javascript" src="/static/login/js/comment/comment.js"></script>
+<script type="text/javascript" src="/static/login/js/particles.min.js"></script>
+<script type="text/javascript" src="/static/login/js/app.js"></script>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+</div>
+</body>
+</html>

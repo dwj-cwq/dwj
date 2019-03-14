@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>HTML5响应式用户登录界面模板</title>
+    <meta name="description" content="particles.js is a lightweight JavaScript library for creating particles.">
+    <meta name="author" content="Vincent Garreau" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" media="screen" href="/static/login/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/login/css/reset.css">
+    <script type="text/javascript" src="/static/login/js/login.js"></script>
+</head>
+
+<body>
+    <div id="particles-js">
+		<div class="registe">
+          <div class="logo"></div>
+            <form action="/demo/register/" method="POST">
+                {% if message %}
+                    <div class="form-message">{{ message }}</div>
+                {% endif %}
+                {% csrf_token %}
+                <div class="form-item">
+                    <input class="email" type="text" name="email" autocomplete="off" placeholder="邮箱">
+
+                </div>
+                <div class="form-item">
+                    <input class="username" type="text" name="username" autocomplete="off" placeholder="用户名">
+
+                </div>
+                <div class="form-item">
+                    <input class="password" type="password" name="password1" autocomplete="off" placeholder="密码">
+
+                </div>
+                <div class="form-item">
+                    <input class="password" type="password" name="password2" autocomplete="off" placeholder="确认密码">
+
+                </div>
+                <div class="form-item"><button id="submit">注册</button></div>
+            </form>
+        </div>
+
+    </div>
+    <div class="sk-rotating-plane"></div>
+    <!-- scripts -->
+    <script type="text/javascript" src="/static/login/js/particles.min.js"></script>
+    <script type="text/javascript" src="/static/login/js/app.js"></script>
+
+</body>
+</html>
