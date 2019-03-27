@@ -1,8 +1,8 @@
 # dwj
 MicroBlog:简易版微博客系统(基于django) 
 
-A simple social networking system called "MicroBlog": 
-User account management functions such as user registration/login/mail password retrieval;
+A simple social networking system called "MicroBlog": /n
+User account management functions such as user registration/login/mail password retrieval;/n
 Weibo list, support hotspots (such as the most clicks / comments, etc.) ;
 microblog list (visible to all users); 
 Can view Weibo content and comments (visible to all users); 
